@@ -1,0 +1,152 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'online.ui'
+#
+# Created by: PyQt5 UI code generator 5.13.1
+#
+# WARNING! All changes made in this file will be lost!
+
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sqlite3
+
+class Ui_online(object):
+    
+    def pay(self):
+                try:
+                        connection=sqlite3.connect("MyLaundry.db")
+                        res= connection.execute("SELECT * FROM user")
+                        con=connection.cursor()
+                        ces=list(res)
+                        print(ces)
+                        user=(list(ces[0])[0])
+                        passw=(list(ces[0])[1])
+                        data = [(user,passw,"Completed")]
+                        c=con.executemany("INSERT INTO Payment  VALUES(?,?,?)",data)
+                        connection.commit()
+                        connection.close()
+            
+                except:
+                        print("Failed")
+    def setupUi(self, online):
+    
+        online.setObjectName("online")
+        online.resize(800, 600)
+        self.centralwidget = QtWidgets.QWidget(online)
+        self.centralwidget.setObjectName("centralwidget")
+        self.label = QtWidgets.QLabel(self.centralwidget)
+        self.label.setGeometry(QtCore.QRect(30, 100, 171, 41))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label.setFont(font)
+        self.label.setObjectName("label")
+        self.label_2 = QtWidgets.QLabel(self.centralwidget)
+        self.label_2.setGeometry(QtCore.QRect(30, 190, 241, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_2.setFont(font)
+        self.label_2.setObjectName("label_2")
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.plainTextEdit.setGeometry(QtCore.QRect(300, 180, 361, 41))
+        self.plainTextEdit.setObjectName("plainTextEdit")
+        self.label_3 = QtWidgets.QLabel(self.centralwidget)
+        self.label_3.setGeometry(QtCore.QRect(30, 260, 161, 16))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_3.setFont(font)
+        self.label_3.setObjectName("label_3")
+        self.plainTextEdit_2 = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.plainTextEdit_2.setGeometry(QtCore.QRect(300, 250, 361, 41))
+        self.plainTextEdit_2.setPlainText("")
+        self.plainTextEdit_2.setObjectName("plainTextEdit_2")
+        self.dateEdit = QtWidgets.QDateEdit(self.centralwidget)
+        self.dateEdit.setGeometry(QtCore.QRect(300, 330, 111, 41))
+        self.dateEdit.setObjectName("dateEdit")
+        self.label_4 = QtWidgets.QLabel(self.centralwidget)
+        self.label_4.setGeometry(QtCore.QRect(30, 330, 131, 31))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_4.setFont(font)
+        self.label_4.setObjectName("label_4")
+        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton.setGeometry(QtCore.QRect(50, 450, 93, 28))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton.setFont(font)
+        self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
+        self.pushButton_2.setGeometry(QtCore.QRect(650, 450, 121, 28))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.pushButton_2.setFont(font)
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect(self.pay)
+        self.plainTextEdit_3 = QtWidgets.QPlainTextEdit(self.centralwidget)
+        self.plainTextEdit_3.setGeometry(QtCore.QRect(580, 330, 104, 41))
+        self.plainTextEdit_3.setObjectName("plainTextEdit_3")
+        self.label_5 = QtWidgets.QLabel(self.centralwidget)
+        self.label_5.setGeometry(QtCore.QRect(490, 340, 55, 16))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_5.setFont(font)
+        self.label_5.setObjectName("label_5")
+        self.label_6 = QtWidgets.QLabel(self.centralwidget)
+        self.label_6.setGeometry(QtCore.QRect(10, 400, 791, 20))
+        self.label_6.setObjectName("label_6")
+        self.label_7 = QtWidgets.QLabel(self.centralwidget)
+        self.label_7.setGeometry(QtCore.QRect(260, 90, 521, 61))
+        self.label_7.setText("")
+        self.label_7.setPixmap(QtGui.QPixmap("payvisa1.jpg"))
+        self.label_7.setObjectName("label_7")
+        self.label_8 = QtWidgets.QLabel(self.centralwidget)
+        self.label_8.setGeometry(QtCore.QRect(200, 0, 331, 41))
+        font = QtGui.QFont()
+        font.setPointSize(16)
+        font.setBold(True)
+        font.setWeight(75)
+        self.label_8.setFont(font)
+        self.label_8.setObjectName("label_8")
+        online.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(online)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 800, 26))
+        self.menubar.setObjectName("menubar")
+        online.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(online)
+        self.statusbar.setObjectName("statusbar")
+        online.setStatusBar(self.statusbar)
+
+        self.retranslateUi(online)
+        QtCore.QMetaObject.connectSlotsByName(online)
+
+    def retranslateUi(self, online):
+        _translate = QtCore.QCoreApplication.translate
+        online.setWindowTitle(_translate("online", "MainWindow"))
+        self.label.setText(_translate("online", "Accepted cards"))
+        self.label_2.setText(_translate("online", "Card Holder\'s Name"))
+        self.label_3.setText(_translate("online", "Card Number"))
+        self.label_4.setText(_translate("online", "Expire date"))
+        self.pushButton.setText(_translate("online", "Cancel"))
+        self.pushButton_2.setText(_translate("online", "CONTINUE"))
+        self.label_5.setText(_translate("online", "CVC"))
+        self.label_6.setText(_translate("online", "----------------------------------------------------------------------------------------------------------------------------------------------------------------"))
+        self.label_8.setText(_translate("online", "Payment Details"))
+
+
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    online = QtWidgets.QMainWindow()
+    ui = Ui_online()
+    ui.setupUi(online)
+    online.show()
+    sys.exit(app.exec_())
